@@ -1,0 +1,73 @@
+import React, { useContext, useEffect, useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { StoreContext } from "~/contexts/StoreProvider";
+import { useAddToFavorite } from "~/hooks/useAddToFavorite";
+
+const FavoriteItemAnimation = ({ product }) => {
+  const [hearts, setHearts] = useState([]);
+  const [isWishList, setIsWishList] = useState(false);
+  const { listItemFavorite, handleFavoriteItem } = useContext(StoreContext);
+
+  useEffect(() => {
+    setIsWishList(handleFavoriteItem(listItemFavorite, product._id));
+  }, []);
+
+  const { handleToFavorite } = useAddToFavorite(product, isWishList);
+
+  const handleClick = () => {
+    setIsWishList(!isWishList);
+
+    // tạo 4 trái tim nhỏ
+    const newHearts = Array.from({ length: 4 }).map((_, i) => ({
+      id: Date.now() + i,
+      x: (Math.random() - 0.5) * 60, // lệch trái/phải
+      y: -80 - Math.random() * 40, // bay cao
+      scale: 0.8 + Math.random() * 0.5
+    }));
+    setHearts((prev) => [...prev, ...newHearts]);
+    handleToFavorite();
+  };
+
+  return (
+    <div className="relative flex justify-center items-center">
+      <span
+        onClick={handleClick}
+        className="border p-3 cursor-pointer rounded-full relative z-10"
+      >
+        {isWishList ? (
+          <FaHeart className="text-black text-xl" />
+        ) : (
+          <FaRegHeart className="text-xl" />
+        )}
+      </span>
+
+      {/* Hiệu ứng tim nhỏ */}
+      <AnimatePresence>
+        {hearts.map((heart) => (
+          <motion.div
+            key={heart.id}
+            initial={{ opacity: 1, x: 0, y: 0, scale: 0.5 }}
+            animate={{
+              opacity: 0,
+              x: heart.x,
+              y: heart.y,
+              scale: heart.scale,
+              rotate: Math.random()
+            }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            exit={{ opacity: 0 }}
+            onAnimationComplete={() =>
+              setHearts((prev) => prev.filter((h) => h.id !== heart.id))
+            }
+            className="absolute"
+          >
+            <FaHeart className="text-black" />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default FavoriteItemAnimation;
