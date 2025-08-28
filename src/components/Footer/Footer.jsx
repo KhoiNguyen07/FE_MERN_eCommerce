@@ -31,10 +31,7 @@ const Footer = () => {
       </div>
 
       <div>
-        <h2>
-          Copyright © 2024 XStore theme. Created by 8theme – WordPress
-          WooCommerce themes.
-        </h2>
+        <h2>dangkhoinguyen1501@gmail.com</h2>
       </div>
     </div>
   );
