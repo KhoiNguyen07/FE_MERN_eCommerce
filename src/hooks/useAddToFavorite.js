@@ -10,50 +10,52 @@ export const useAddToFavorite = (product, isWishList) => {
     useContext(StoreContext);
 
   useEffect(() => {
-    favoriteService
-      .findOneByProductId({ productId: product._id })
-      .then((res) => {
+    const fetchFavorite = async () => {
+      try {
+        const res = await favoriteService.findOneByProductId({
+          productId: product._id
+        });
         setFavoriteId(res.data?._id);
-      })
-      .catch();
-  }, [listItemFavorite]);
-  const handleToFavorite = () => {
-    if (!isWishList) {
-      if (!userInfo) {
-        toast.warning("Must be sign in!");
-        setIsOpenSidebar(true);
-        setTitleSidebar({ ...titleSidebar, title: "Sign in" });
-        return;
+      } catch (err) {
+        console.error("Error fetching favorite:", err);
+      }
+    };
+
+    fetchFavorite();
+  }, [listItemFavorite, product._id]);
+
+  const handleToFavorite = async () => {
+    try {
+      if (!isWishList) {
+        if (!userInfo) {
+          toast.warning("Must be sign in!");
+          setIsOpenSidebar(true);
+          setTitleSidebar((prev) => ({ ...prev, title: "Sign in" }));
+          return;
+        }
+
+        const data = {
+          userId: userInfo._id,
+          item: {
+            productId: product._id,
+            name: product.name,
+            image: product.images[0],
+            price: product.price
+          }
+        };
+
+        const res = await favoriteService.createItem(data);
+        toast.success(res.data.message);
+      } else {
+        await favoriteService.deleteFavorite({ favoriteId });
+        toast.success("Delete successfully!");
       }
 
-      const data = {
-        userId: userInfo._id,
-        item: {
-          productId: product._id,
-          name: product.name,
-          image: product.images[0],
-          price: product.price
-        }
-      };
-
-      favoriteService
-        .createItem(data)
-        .then((res) => {
-          toast.success(res.data.message);
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("Something wrong!");
-        });
-    } else {
-      favoriteService
-        .deleteFavorite({ favoriteId })
-        .then(() => {
-          toast.success("Delete successfully!");
-        })
-        .catch();
+      setIsOnClickFunction((prev) => !prev);
+    } catch (err) {
+      console.error("Error in handleToFavorite:", err);
+      toast.error("Something wrong!");
     }
-    setIsOnClickFunction((prev) => !prev);
   };
 
   return { handleToFavorite };

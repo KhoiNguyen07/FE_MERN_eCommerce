@@ -16,8 +16,6 @@ const FavoriteItemAnimation = ({ product, p3 = "" }) => {
   const { handleToFavorite } = useAddToFavorite(product, isWishList);
 
   const handleClick = () => {
-    setIsWishList(!isWishList);
-
     // tạo 4 trái tim nhỏ
     const newHearts = Array.from({ length: 4 }).map((_, i) => ({
       id: Date.now() + i,
@@ -27,6 +25,8 @@ const FavoriteItemAnimation = ({ product, p3 = "" }) => {
     }));
     setHearts((prev) => [...prev, ...newHearts]);
     handleToFavorite();
+
+    setIsWishList(!isWishList);
   };
 
   return (
