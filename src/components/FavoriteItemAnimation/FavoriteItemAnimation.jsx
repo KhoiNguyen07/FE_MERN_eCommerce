@@ -4,14 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { StoreContext } from "~/contexts/StoreProvider";
 import { useAddToFavorite } from "~/hooks/useAddToFavorite";
 
-const FavoriteItemAnimation = ({ product }) => {
+const FavoriteItemAnimation = ({ product, p3 = "" }) => {
   const [hearts, setHearts] = useState([]);
   const [isWishList, setIsWishList] = useState(false);
   const { listItemFavorite, handleFavoriteItem } = useContext(StoreContext);
 
   useEffect(() => {
     setIsWishList(handleFavoriteItem(listItemFavorite, product._id));
-  }, []);
+  }, [listItemFavorite]);
 
   const { handleToFavorite } = useAddToFavorite(product, isWishList);
 
@@ -30,16 +30,12 @@ const FavoriteItemAnimation = ({ product }) => {
   };
 
   return (
-    <div className="relative flex justify-center items-center">
+    <>
       <span
         onClick={handleClick}
-        className="border p-3 cursor-pointer rounded-full relative z-10"
+        className={`cursor-pointer relative z-10 ${p3}`}
       >
-        {isWishList ? (
-          <FaHeart className="text-black text-xl" />
-        ) : (
-          <FaRegHeart className="text-xl" />
-        )}
+        {isWishList ? <FaHeart className="text-black " /> : <FaRegHeart />}
       </span>
 
       {/* Hiệu ứng tim nhỏ */}
@@ -66,7 +62,7 @@ const FavoriteItemAnimation = ({ product }) => {
           </motion.div>
         ))}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 

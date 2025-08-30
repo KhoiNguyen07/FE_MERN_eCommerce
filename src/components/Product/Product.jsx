@@ -9,6 +9,7 @@ import Loading from "../Loading/Loading";
 import { StoreContext } from "~/contexts/StoreProvider";
 import { useAddToFavorite } from "~/hooks/useAddToFavorite";
 import { useStransferToVND } from "~/hooks/useStransferToVND";
+import FavoriteItemAnimation from "../FavoriteItemAnimation/FavoriteItemAnimation";
 
 const Product = ({ item, addCartBtn = false }) => {
   const { images, name, sizes, brand, price, _id } = item;
@@ -67,6 +68,9 @@ const Product = ({ item, addCartBtn = false }) => {
                group-hover:opacity-100 group-hover:translate-x-0 group-hover:visible 
                transition-all duration-500"
           >
+            <p className="hover:bg-gray-200 duration-300 transition-colors cursor-pointer flex items-center justify-center">
+              <FavoriteItemAnimation product={item} p3="p-3" />
+            </p>
             {productIcon.map((itemIcon, index) => (
               <p
                 onClick={() => {
@@ -75,10 +79,6 @@ const Product = ({ item, addCartBtn = false }) => {
                       setIsOpenSidebar(true);
                       setTitleSidebar({ ...titleSidebar, title: "see" });
                       setCurrentItemToSee(item);
-                      return;
-                    case "favorite":
-                      setIsWishList(!isWishList);
-                      handleToFavorite();
                       return;
                     case "detail":
                       handleToDetailProduct();
@@ -90,11 +90,7 @@ const Product = ({ item, addCartBtn = false }) => {
                 key={index}
                 className={`p-3 hover:bg-gray-200 duration-300 transition-colors cursor-pointer`}
               >
-                {itemIcon.code == "favorite"
-                  ? isWishList
-                    ? itemIcon.icon[0]
-                    : itemIcon.icon[1]
-                  : itemIcon.icon}
+                {itemIcon.icon}
               </p>
             ))}
           </div>

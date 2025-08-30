@@ -2,14 +2,11 @@ import { TfiReload } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import FavoriteItemAnimation from "~/components/FavoriteItemAnimation/FavoriteItemAnimation";
 export const productIcon = [
   {
     code: "detail",
     icon: <HiOutlineShoppingBag />
-  },
-  {
-    code: "favorite",
-    icon: [<FaHeart />, <FaRegHeart />]
   },
   {
     code: "",

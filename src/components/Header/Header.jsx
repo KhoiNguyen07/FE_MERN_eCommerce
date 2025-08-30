@@ -32,8 +32,8 @@ const Header = () => {
 
   const {
     userInfo,
-    setListItemFavorite,
-    setCountItemFavor,
+    setListItemFavoriteFunction,
+    setCountItemFavorFunction,
     setListItemCart,
     totalItem,
     setCountItem,
@@ -55,15 +55,15 @@ const Header = () => {
       favoriteService
         .getAllFavorite({ userId: userInfo._id })
         .then((res) => {
-          setListItemFavorite(res.data);
-          setCountItemFavor(res.data.length);
+          setListItemFavoriteFunction(res.data);
+          setCountItemFavorFunction(res.data.length);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
       setCountItem(0);
-      setCountItemFavor(0);
+      setCountItemFavorFunction(0);
     }
   }, [userInfo, isOnclick]);
 

@@ -8,7 +8,7 @@ import { TfiReload } from "react-icons/tfi";
 import { iconArr } from "~/assets/ContentArrProject/Footer/MenuAndIcon";
 import { IoIosArrowDown } from "react-icons/io";
 import { useAddToCart } from "~/hooks/useAddToCart";
-import FavoriteItemAnimation from "./FavoriteItemAnimation";
+import FavoriteItemAnimation from "../../../components/FavoriteItemAnimation/FavoriteItemAnimation";
 import RatingCustom from "./RatingCustom";
 
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
@@ -120,9 +120,9 @@ const MainContentDetail = ({ product }) => {
 
         {/* Heart + Reload */}
         <div className="flex items-center space-x-3">
-          <span>
-            <FavoriteItemAnimation product={product} />
-          </span>
+          <div className="relative flex justify-center items-center border rounded-full">
+            <FavoriteItemAnimation product={product} p3="p-3" />
+          </div>
           <span className="border p-3 cursor-pointer rounded-full">
             <TfiReload />
           </span>

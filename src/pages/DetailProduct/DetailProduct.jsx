@@ -9,26 +9,6 @@ import { useParams } from "react-router-dom";
 import { favoriteService } from "~/apis/favoriteService";
 import { SearchContext } from "~/contexts/SearchProvider";
 
-// const product = {
-//   _id: "68903b65cbdebdb0bcf13c2c",
-//   name: "Rhoncus Facilisis Tempus",
-//   price: 879.99,
-//   description:
-//     "Amet, elit tellus, nisi odio velit ut. Euismod sit arcu, quisque arcu purus orci leo.",
-//   brand: "WinterLine",
-//   category: "Jackets",
-//   colors: ["Black", "Gray"],
-//   createdAt: "2025-08-04T00:00:00.000Z",
-//   images: [
-//     "/Product_img/5/5_1.jpeg",
-//     "/Product_img/5/5_2.jpeg",
-//     "/Product_img/5/5_3.jpeg",
-//     "/Product_img/5/5_4.jpeg"
-//   ],
-//   sizes: ["L", "XL", "XXL"],
-//   stock: 6
-// };
-
 const DetailProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);

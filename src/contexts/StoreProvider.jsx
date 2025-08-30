@@ -21,8 +21,15 @@ const StoreProvider = ({ children }) => {
     });
   };
 
+  //  favorite
   const [listItemFavorite, setListItemFavorite] = useState(null);
-  const [countItemFavor, setCountItemFavor] = useState(null);
+  const [countItemFavor, setCountItemFavor] = useState(0);
+  const setCountItemFavorFunction = (value) => {
+    setCountItemFavor(value);
+  };
+  const setListItemFavoriteFunction = (value) => {
+    setListItemFavorite(value);
+  };
 
   // list cart
   const [listItemCart, setListItemCart] = useState(null);
@@ -63,11 +70,13 @@ const StoreProvider = ({ children }) => {
         isOnclick,
         userInfo,
         setUserInfo,
-        listItemFavorite,
-        setListItemFavorite,
+        // favorite
         handleFavoriteItem,
+        listItemFavorite,
+        setListItemFavoriteFunction,
         countItemFavor,
-        setCountItemFavor,
+        setCountItemFavorFunction,
+        // cart
         listItemCart,
         setListItemCart,
         totalPrice,
