@@ -107,7 +107,7 @@ const Header = () => {
           </div>
 
           {/* Right content */}
-          <div className="flex xl:w-1/3 justify-between">
+          <div className="flex xl:w-1/3 justify-between items-center">
             {menuArr.slice(3, menuArr.length).map((item) => (
               <Menu
                 title={item.title}

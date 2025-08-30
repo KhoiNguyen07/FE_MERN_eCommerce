@@ -1,8 +1,8 @@
 import axios from "axios";
-import { ENV } from "~/assets/ENV/ENV.js";
+const api = import.meta.env.VITE_DB_URL;
 
 const axiosClient = axios.create({
-  baseURL: ENV.dbURL,
+  baseURL: api,
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
