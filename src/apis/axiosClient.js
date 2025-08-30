@@ -1,8 +1,8 @@
 import axios from "axios";
+import { ENV } from "~/assets/ENV/ENV.js";
 
 const axiosClient = axios.create({
-  baseURL: "https://techleaf.pro/shoes-shop",
-  // baseURL: "http://localhost:8080/shoes-shop",
+  baseURL: ENV.dbURL,
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
