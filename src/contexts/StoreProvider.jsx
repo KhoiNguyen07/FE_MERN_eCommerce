@@ -2,10 +2,18 @@ import React, { createContext, useState } from "react";
 
 export const StoreContext = createContext();
 
+// login default
+const user = {
+  _id: "68b07f99219dc1142ca9937f",
+  email: "abc123@gmail.com",
+  password: "123456",
+  username: "khoinguyenne"
+};
+
 const StoreProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(() => {
     const savedUser = localStorage.getItem("userInfo");
-    return savedUser ? JSON.parse(savedUser) : null;
+    return savedUser ? JSON.parse(savedUser) : user;
   });
 
   // onlick
