@@ -11,7 +11,7 @@ import { useAddToFavorite } from "~/hooks/useAddToFavorite";
 import { useStransferToVND } from "~/hooks/useStransferToVND";
 import FavoriteItemAnimation from "../FavoriteItemAnimation/FavoriteItemAnimation";
 
-const Product = ({ item, addCartBtn = false }) => {
+const Product = ({ item, addCartBtn = false, setIsLoadingFunction }) => {
   const { images, name, sizes, brand, price, _id } = item;
   const [selectedSize, setSelectedSize] = useState(null);
   const [loading, setLoading] = useState(false);

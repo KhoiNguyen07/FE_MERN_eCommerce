@@ -6,8 +6,8 @@ import RelatedProduct from "./component/RelatedProduct";
 import Footer from "~/components/Footer/Footer";
 import { productService } from "~/apis/productService";
 import { useParams } from "react-router-dom";
-import { favoriteService } from "~/apis/favoriteService";
 import { SearchContext } from "~/contexts/SearchProvider";
+import Loading from "~/components/Loading/Loading";
 
 const DetailProduct = () => {
   const { id } = useParams();

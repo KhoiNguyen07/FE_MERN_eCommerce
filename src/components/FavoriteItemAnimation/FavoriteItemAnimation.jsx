@@ -3,8 +3,10 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { StoreContext } from "~/contexts/StoreProvider";
 import { useAddToFavorite } from "~/hooks/useAddToFavorite";
+import Loading from "../Loading/Loading";
 
 const FavoriteItemAnimation = ({ product, p3 = "" }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [hearts, setHearts] = useState([]);
   const [isWishList, setIsWishList] = useState(false);
   const { listItemFavorite, handleFavoriteItem } = useContext(StoreContext);
@@ -27,10 +29,17 @@ const FavoriteItemAnimation = ({ product, p3 = "" }) => {
     handleToFavorite();
 
     setIsWishList(!isWishList);
+
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   };
 
   return (
     <>
+      {isLoading && <Loading />}
+
       <span
         onClick={handleClick}
         className={`cursor-pointer relative z-10 ${p3}`}

@@ -15,7 +15,7 @@ import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { useStransferToVND } from "~/hooks/useStransferToVND";
 
-const MainContentDetail = ({ product }) => {
+const MainContentDetail = ({ product, setIsLoadingFunction }) => {
   const [isShowInfo, setIsShowInfo] = useState(false);
   const [isShowRating, setIsShowRating] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
