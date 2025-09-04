@@ -305,14 +305,14 @@ const MainContentDetail = ({ product }) => {
               {userInfo ? (
                 <div className="flex flex-col space-y-5">
                   {/* rating star */}
-                  <div>
+                  {/* <div>
                     <h2>
                       Your rating <span className="text-red-500">*</span>
                     </h2>
                     <div>
                       <RatingCustom />
                     </div>
-                  </div>
+                  </div> */}
                   {/* review */}
                   <form onSubmit={formik.handleSubmit}>
                     <div>
