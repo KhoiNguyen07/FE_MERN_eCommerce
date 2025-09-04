@@ -268,7 +268,7 @@ const MainContentDetail = ({ product }) => {
               >
                 <IoIosArrowDown />
               </span>
-              <h2>Rating reviews ({listComment.length})</h2>
+              <h2>Rating reviews ({listComment ? listComment.length : 0})</h2>
             </div>
 
             {/* Content */}
