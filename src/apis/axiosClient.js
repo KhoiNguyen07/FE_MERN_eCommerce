@@ -1,10 +1,9 @@
 import axios from "axios";
-const api = import.meta.env.VITE_DB_URL;
+const apilocal = import.meta.env.VITE_DB_URL_LOCAL;
+const apiRender = import.meta.env.VITE_DB_URL_RENDER;
 
 const axiosClient = axios.create({
-  // baseURL: "https://techleaf.pro/shoes-shop",
-  // baseURL: "http://localhost:8080/shoes-shop",
-  baseURL: "https://be-mern-ecommerce-4os7.onrender.com/shoes-shop",
+  baseURL: apiRender,
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
